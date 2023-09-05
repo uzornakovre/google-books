@@ -4,101 +4,14 @@ import useFormData from "../../hooks/useFormData";
 import { TFormValues } from "../../hooks/useFormData";
 import { FormEvent } from "react";
 import { getBooks } from "../../utils/api";
-// import { useContext, useRef, useEffect, useState } from "react";
-// import { MoviesListContext } from "../../contexts/MoviesListContextProvider";
-// import { MoviesSearchResultContext } from "../../contexts/MoviesSearchResultContext";
-// import { SearchedContext } from "../../contexts/SearchedContext";
 
-function SearchForm() {
+const SearchForm = () => {
   const formData = useFormData<TFormValues>({
     keyword: "",
     categories: '',
     sort_by: 'relevance'
   });
   const { keyword, categories, sort_by } = formData.values;
-  // const moviesList = useContext(MoviesListContext);
-  // const { searched, setSearched } = useContext(SearchedContext);
-  // const { moviesSearchResult, setMoviesSearchResult } = useContext(MoviesSearchResultContext);
-  // let filteredMoviesList = [];
-  // let data = { movies: searchData, savedMovies: searchData };
-
-  // function filterByName(name, list, page) {
-  //   data[page] = {...data[page], input: name };
-  //   filteredMoviesList = list.filter((movie) => {
-  //     return name ? movie.nameRU.toLowerCase().includes(name.toLowerCase()) ||
-  //       movie.nameEN.toLowerCase().includes(name.toLowerCase()) : [];
-  //   });
-  // }
-
-  // function filterByDuration(isOn, page) {
-  //   data[page] = {...data[page], filterShorts: !isOn };
-
-  //   if (!isOn) {
-  //     filteredMoviesList = filteredMoviesList.filter((movie) => movie.duration > 40);
-  //     data[page] = {...data[page], filterShorts: !isOn };
-  //   }
-  // }
-
-  // function createResult(page) {
-  //   let result = [];
-
-  //   for (let i = 0; i < (moviesQuantity >= filteredMoviesList.length
-  //     ? filteredMoviesList.length : moviesQuantity); i++) {
-  //     result.push(filteredMoviesList[i]);
-  //   }
-
-  //   setMoviesSearchResult({ ...moviesSearchResult, [page]: result, filteredMoviesList: filteredMoviesList });
-  //   data[page] = {...data[page], filtered: filteredMoviesList, result: result};
-  // }
-
-  // function renderCards(page) {
-
-  //   if (page === 'movies') {
-  //     filterByName(formData.values.search, moviesList, page);
-  //   }
-  //   if (page === 'savedMovies') {
-  //     filterByName(formData.values.search, savedMovies, page);
-  //   }
-
-  //   filterByDuration(shortsRef.current.checked, page);
-  //   createResult(page);
-  // }
-
-  // function storeData() {
-  //   if (page === 'movies') {
-  //     localStorage.setItem('moviesSearchData', JSON.stringify(data.movies));
-  //   }
-  // }
-
-  // function handleSearchSubmit(evt) {
-  //   evt.preventDefault();
-  //   if (formData.values.search !== '') {
-  //     setSearchError(false);
-  //     renderCards(page);
-  //     storeData();
-  //     setSearched({ ...searched, [page]: true });
-  //   } else {
-  //     setSearchError(true);
-  //   }
-  // }
-
-  // useEffect(() => {
-  //   renderCards(page);
-  // }, [moviesQuantity]);
-
-  // useEffect(() => {
-  //   const moviesSearchData = JSON.parse(localStorage.getItem('moviesSearchData')) || { input: '' };
-  //   const savedMoviesSearchData = JSON.parse(localStorage.getItem('savedMoviesSearchData')) || { input: '' };
-
-  //   if (page === 'savedMovies') {
-  //     formData.values.search = savedMoviesSearchData.input;
-  //     shortsRef.current.checked = !savedMoviesSearchData.filterShorts;
-  //   }
-  //   if (page === 'movies') {
-  //     formData.values.search = moviesSearchData.input;
-  //     shortsRef.current.checked = !moviesSearchData.filterShorts;
-  //   }
-  // }, []);
 
   function handleSearchSubmit(evt: FormEvent) {
     evt.preventDefault();

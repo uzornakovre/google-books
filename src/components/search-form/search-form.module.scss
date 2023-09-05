@@ -22,19 +22,19 @@
   gap: 41px;
   margin: 0;
   padding: 0;
-  padding-bottom: 83px;
+  padding-bottom: 50px;
   border-bottom: 1px solid rgba(170, 170, 170, .2);
 
   @media screen and (max-width: 1023px) {
     grid-template-columns: 1fr;
     justify-items: center;
     gap: 38px;
-    padding-bottom: 57px;
+    padding-bottom: 38px;
   }
 
   @media screen and (max-width: 767px) {
-    gap: 45px;
-    padding-bottom: 44px;
+    gap: 20px;
+    padding-bottom: 20px;
   }
 }
 
@@ -127,25 +127,27 @@
   margin: 0;
   padding: 0;
   min-width: 167px;
-  font-weight: 400;
-  font-size: 13px;
-  line-height: 18px;
   color: #000000;
   align-self: center;
-
-  @media screen and (max-width: 767px) {
-    font-size: 11px;
-    line-height: 1.64;
-    padding-left: 18px;
+  
+  @media screen and (max-width: 1023px) {
+    flex-direction: row;
+    gap: 32px;
   }
 }
 
 .filter_item {
   display: grid;
   grid-template-columns: 60px auto;
+  align-items: center;
   font-weight: 400;
   font-size: 11px;
   line-height: 1.29;
+
+  @media screen and (max-width: 1023px) {
+    grid-template-columns: max-content auto;
+    gap: 8px;
+  }
 }
 
 .select_menu {

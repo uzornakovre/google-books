@@ -12,7 +12,7 @@ export const getBooks = (
   keyword: string,
   category: string,
   sortBy: string,
-  startIndex: number,
+  startIndex: number
 ): Promise<any> => {
   return fetch(
     `${BASE_URL}?q=${keyword}+subject:${category}&orderBy${sortBy}&startIndex=${startIndex}&maxResults=30&key=${API_KEY}`,
