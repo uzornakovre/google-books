@@ -1,9 +1,9 @@
-import styles from './app.module.scss';
+import SearchForm from '../search-form/search-form';
 
 const App = () => {
   return (
     <>
-      
+      <SearchForm />
     </>
   )
 }
