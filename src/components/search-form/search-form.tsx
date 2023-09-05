@@ -3,6 +3,7 @@ import styles from "./search-form.module.scss";
 import useFormData from "../../hooks/useFormData";
 import { TFormValues } from "../../hooks/useFormData";
 import { FormEvent } from "react";
+import { getBooks } from "../../utils/api";
 // import { useContext, useRef, useEffect, useState } from "react";
 // import { MoviesListContext } from "../../contexts/MoviesListContextProvider";
 // import { MoviesSearchResultContext } from "../../contexts/MoviesSearchResultContext";
@@ -10,8 +11,11 @@ import { FormEvent } from "react";
 
 function SearchForm() {
   const formData = useFormData<TFormValues>({
-    search: "",
+    keyword: "",
+    categories: '',
+    sort_by: 'relevance'
   });
+  const { keyword, categories, sort_by } = formData.values;
   // const moviesList = useContext(MoviesListContext);
   // const { searched, setSearched } = useContext(SearchedContext);
   // const { moviesSearchResult, setMoviesSearchResult } = useContext(MoviesSearchResultContext);
@@ -98,6 +102,7 @@ function SearchForm() {
 
   function handleSearchSubmit(evt: FormEvent) {
     evt.preventDefault();
+    getBooks(keyword, categories, sort_by, 0);
   }
 
   return (
@@ -111,10 +116,10 @@ function SearchForm() {
           <input
             className={styles.input}
             type="text"
-            name="search"
+            name="keyword"
             placeholder="Enter a keyword to search books"
             onChange={formData.handleChange}
-            value={formData.values.search || ""}
+            value={keyword || ""}
             minLength={1}
             autoComplete="off"
             required
@@ -134,8 +139,10 @@ function SearchForm() {
               className={styles.select_menu}
               name="categories"
               id="categories"
+              onChange={formData.handleChange}
+              value={categories}
             >
-              <option className={styles.select_option} value="all">
+              <option className={styles.select_option} value="">
                 All
               </option>
               <option className={styles.select_option} value="art">
@@ -164,6 +171,8 @@ function SearchForm() {
               className={styles.select_menu}
               name="sort_by"
               id="sort_by"
+              onChange={formData.handleChange}
+              value={sort_by}
             >
               <option className={styles.select_option} value="relevance">
                 Relevance
