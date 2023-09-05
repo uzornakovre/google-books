@@ -8,12 +8,8 @@ const checkResponse = <T>(res: Response): Promise<T> => {
   }
 };
 
-export const getBooks = (
-  keyword: string,
-  category: string,
-  sortBy: string,
-  startIndex: number
-): Promise<any> => {
+export const fetchBooks = (data: ISearchData): Promise<any> => {
+  const { keyword, category, sortBy, startIndex } = data;
   return fetch(
     `${BASE_URL}?q=${keyword}+subject:${category}&orderBy${sortBy}&startIndex=${startIndex}&maxResults=30&key=${API_KEY}`,
     {

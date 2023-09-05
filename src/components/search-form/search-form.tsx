@@ -3,19 +3,21 @@ import styles from "./search-form.module.scss";
 import useFormData from "../../hooks/useFormData";
 import { TFormValues } from "../../hooks/useFormData";
 import { FormEvent } from "react";
-import { getBooks } from "../../utils/api";
+import { useAppDispatch } from "../../services/hooks";
+import { getBooks } from "../../services/books/books-slice";
 
 const SearchForm = () => {
+  const dispatch = useAppDispatch();
   const formData = useFormData<TFormValues>({
     keyword: "",
-    categories: '',
-    sort_by: 'relevance'
+    category: "",
+    sortBy: "relevance",
   });
-  const { keyword, categories, sort_by } = formData.values;
+  const { keyword, category, sortBy } = formData.values;
 
   function handleSearchSubmit(evt: FormEvent) {
     evt.preventDefault();
-    getBooks(keyword, categories, sort_by, 0);
+    dispatch(getBooks({ keyword, category, sortBy, startIndex: 0 }));
   }
 
   return (
@@ -47,13 +49,13 @@ const SearchForm = () => {
         </fieldset>
         <fieldset className={styles.filter}>
           <div className={styles.filter_item}>
-            <label htmlFor="categories">Category</label>
+            <label htmlFor="category">Category</label>
             <select
               className={styles.select_menu}
-              name="categories"
-              id="categories"
+              name="category"
+              id="category"
               onChange={formData.handleChange}
-              value={categories}
+              value={category}
             >
               <option className={styles.select_option} value="">
                 All
@@ -79,13 +81,13 @@ const SearchForm = () => {
             </select>
           </div>
           <div className={styles.filter_item}>
-            <label htmlFor="sort_by">Sort by</label>
+            <label htmlFor="sortBy">Sort by</label>
             <select
               className={styles.select_menu}
-              name="sort_by"
-              id="sort_by"
+              name="sortBy"
+              id="sortBy"
               onChange={formData.handleChange}
-              value={sort_by}
+              value={sortBy}
             >
               <option className={styles.select_option} value="relevance">
                 Relevance
@@ -99,6 +101,6 @@ const SearchForm = () => {
       </form>
     </section>
   );
-}
+};
 
 export default SearchForm;
