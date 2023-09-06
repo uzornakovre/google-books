@@ -2,22 +2,21 @@ import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { fetchBooks } from "../../utils/api";
 import { UnknownAsyncThunkRejectedAction } from "@reduxjs/toolkit/dist/matchers";
 
-interface IBook {
-  title: string;
-  image: string;
-  imageSmall: string;
-  category?: string;
-  authors: Array<string>;
-}
-
 interface IBooksState {
-  books: Array<IBook>;
+  bookList: Array<IBook>;
+  searchData: ISearchData
   isLoading: boolean;
   error: string;
 }
 
 const initialState: IBooksState = {
-  books: [],
+  bookList: [],
+  searchData: {
+    keyword: '',
+    category: '',
+    sortBy: 'relevance',
+    startIndex: 0
+  },
   isLoading: false,
   error: "",
 };
@@ -33,7 +32,15 @@ export const getBooks = createAsyncThunk(
 export const booksSlice = createSlice({
   name: "books",
   initialState,
-  reducers: {},
+  reducers: {
+    setSearchData: (state, action: PayloadAction<ISearchData>) => {
+      state.searchData = action.payload;
+    },
+    clearSearchData: (state) => {
+      state.bookList = initialState.bookList;
+      state.searchData = initialState.searchData;
+    }
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getBooks.pending, (state) => {
@@ -41,27 +48,38 @@ export const booksSlice = createSlice({
       })
       .addCase(getBooks.fulfilled, (state, action: PayloadAction<any>) => {
         state.isLoading = false;
-        state.books = action.payload.items.map((item: any) => {
-          const { title, imageLinks, categories, category, authors } =
-            item.volumeInfo;
+        const list = action.payload.items.map((item: any) => {
+          const {
+            title,
+            imageLinks,
+            categories,
+            category,
+            description,
+            authors,
+          } = item.volumeInfo;
           return {
-            title: title,
-            image: imageLinks.thumbnail,
-            imageSmall: imageLinks.smallThumbnail,
-            category: categories ? categories[0] : category,
-            authors: authors,
+            id: item.id,
+            title,
+            image: imageLinks?.thumbnail,
+            imageSmall: imageLinks?.smallThumbnail,
+            categories: categories ? categories : [category],
+            description,
+            authors,
           };
         });
+        state.bookList = state.bookList.concat(list);
       })
       .addCase(
         getBooks.rejected,
         (state, action: UnknownAsyncThunkRejectedAction) => {
           state.isLoading = false;
-          state.books = initialState.books;
+          state.bookList = initialState.bookList;
           state.error = action.error.message || initialState.error;
         }
       );
   },
 });
+
+export const { setSearchData, clearSearchData } = booksSlice.actions;
 
 export default booksSlice.reducer;

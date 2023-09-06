@@ -4,7 +4,11 @@ import useFormData from "../../hooks/useFormData";
 import { TFormValues } from "../../hooks/useFormData";
 import { FormEvent } from "react";
 import { useAppDispatch } from "../../services/hooks";
-import { getBooks } from "../../services/books/books-slice";
+import {
+  clearSearchData,
+  getBooks,
+  setSearchData,
+} from "../../services/books/books-slice";
 
 const SearchForm = () => {
   const dispatch = useAppDispatch();
@@ -17,6 +21,8 @@ const SearchForm = () => {
 
   function handleSearchSubmit(evt: FormEvent) {
     evt.preventDefault();
+    dispatch(clearSearchData());
+    dispatch(setSearchData({ keyword, category, sortBy, startIndex: 0 }));
     dispatch(getBooks({ keyword, category, sortBy, startIndex: 0 }));
   }
 
