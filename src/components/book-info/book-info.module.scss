@@ -1,0 +1,37 @@
+@import '../../styles/index.scss';
+
+.book_info {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.authors {
+  font-weight: 700;
+}
+
+.categories {
+  max-width: 80%;
+  color: #A0A0A0;
+}
+
+.title {
+  max-width: 80%;
+}
+
+.image {
+  max-height: 200px;
+  object-fit: contain;
+}
+
+.description {
+  max-height: 200px;
+  overflow-y: scroll;
+  border: 1px solid #2BE080;
+  padding: 10px;
+}
+
+.description {
+  padding-right: 20px;
+  font-size: 13px;
+}

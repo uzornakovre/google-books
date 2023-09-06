@@ -6,3 +6,5 @@ export const getResultIsLoading: (store: RootState) => boolean =
   (store) => store.books.isLoading;
 export const getSearchData: (store: RootState) => ISearchData = 
   (store) => store.books.searchData;
+export const getCurrentBook: (store: RootState) => IBook | null = 
+  (store) => store.books.currentBook;

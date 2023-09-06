@@ -29,3 +29,17 @@ ul,
 ol {
   list-style-type: none;
 }
+
+*::-webkit-scrollbar {
+  width: 6px;
+}
+
+*:-webkit-scrollbar-track {
+  background: #fff;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #2BE080;
+  border-radius: none;
+  border: none;
+}

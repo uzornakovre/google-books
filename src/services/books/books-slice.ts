@@ -4,6 +4,7 @@ import { UnknownAsyncThunkRejectedAction } from "@reduxjs/toolkit/dist/matchers"
 
 interface IBooksState {
   bookList: Array<IBook>;
+  currentBook: IBook | null;
   searchData: ISearchData
   isLoading: boolean;
   error: string;
@@ -11,6 +12,7 @@ interface IBooksState {
 
 const initialState: IBooksState = {
   bookList: [],
+  currentBook: null,
   searchData: {
     keyword: '',
     category: '',
@@ -39,7 +41,10 @@ export const booksSlice = createSlice({
     clearSearchData: (state) => {
       state.bookList = initialState.bookList;
       state.searchData = initialState.searchData;
-    }
+    },
+    setCurrentBook: (state, action: PayloadAction<IBook>) => {
+      state.currentBook = action.payload;
+    } 
   },
   extraReducers: (builder) => {
     builder
@@ -80,6 +85,6 @@ export const booksSlice = createSlice({
   },
 });
 
-export const { setSearchData, clearSearchData } = booksSlice.actions;
+export const { setSearchData, clearSearchData, setCurrentBook } = booksSlice.actions;
 
 export default booksSlice.reducer;
