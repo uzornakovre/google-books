@@ -2,6 +2,7 @@ import {
   getResultIsLoading,
   getSearchData,
   getSearchResult,
+  getTotalItems,
 } from "../../services/books/selectors";
 import { useAppDispatch, useAppSelector } from "../../services/hooks";
 import styles from "./search-result.module.scss";
@@ -14,8 +15,9 @@ const SearchResult = () => {
   const dispatch = useAppDispatch();
   const isLoading = useAppSelector(getResultIsLoading);
   const searchData = useAppSelector(getSearchData);
+  const totalItems = useAppSelector(getTotalItems);
   const searchResult = useAppSelector(getSearchResult);
-  const [bookList, setBookList] = useState<Array<any>>([]);
+  const [bookList, setBookList] = useState<Array<JSX.Element>>([]);
 
   function renderCard(item: any, index: number) {
     return (
@@ -55,6 +57,7 @@ const SearchResult = () => {
       {!searchResult.length && (
         <p className={styles.tip}>Here will be search result</p>
       )}
+      {totalItems > 0 && <p className={styles.tip}>{totalItems} books found</p>}
       {isLoading && <Preloader />}
       <ul className={styles.list}>{bookList}</ul>
       {searchResult.length >= 30 && (
