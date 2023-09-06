@@ -1,46 +1,24 @@
-# Getting Started with Create React App
+# :small_orange_diamond: Приложение "Search for Books"
+*Тестовое задание*  
+______
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[![Скриншот страницы](https://i.ibb.co/fNLBtc0/2023-09-06-08-05-38.jpg)](https://uzornakovre.github.io/google-books/)
 
-## Available Scripts
+C помощью данного приложения можно осуществлять поиск книг по ключевому слову. Присутствует возможность фильтровать результат поиска по нескольким критериям. Данные запрашиваются у **Google Books API**. Для использования значений элементов формы поиска используется кастомный хук **useFormData**. 
 
-In the project directory, you can run:
+Результат поиска отображается на странице в виде карточек, при нажатии на какую-либо из них открывается **модальное окно** с расширенным описанием книги. Изначально отображаются только 30 карточек, а при каждом нажатии на кнопку "Load more" будут загружаться еще по 30, дополняя список.
 
-### `npm start`
+Хранение состояний реализуется с помошью библиотеки **Redux Toolkit**.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Верстка **адаптивно-отзывчивая**, прекрасно смотрится на всех разрешениях начиная от 320pх. Присутствуют элементы **flexbox** и **grid layout**. 
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Используемые технологии: 
+* :heavy_check_mark: HTML5    
+* :heavy_check_mark: CSS3 (**Препроцессор SCSS**)      
+* :heavy_check_mark: TypeScript
+* :heavy_check_mark: React.js
+* :heavy_check_mark: Redux Toolkit
+ 
+[:link: Открыть веб-сайт приложения](https://uzornakovre.github.io/google-books/)  
+------
+![GitHub repo size](https://img.shields.io/github/repo-size/uzornakovre/google-books?color=yellow&style=flat-square) ![GitHub last commit](https://img.shields.io/github/last-commit/uzornakovre/google-books?color=blue&style=flat-square) ![GitHub Repo stars](https://img.shields.io/github/stars/uzornakovre/google-books?color=pink&style=flat-square)  
