@@ -17,8 +17,5 @@ export const fetchBooks = (data: ISearchData): Promise<any> => {
     }
   )
     .then((res) => checkResponse<any>(res))
-    .then((data) => {
-      console.log(data);
-      return data;
-    });
+    .then(data => data);
 };

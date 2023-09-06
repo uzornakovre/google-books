@@ -19,7 +19,7 @@ const SearchForm = () => {
   });
   const { keyword, category, sortBy } = formData.values;
 
-  function handleSearchSubmit(evt: FormEvent) {
+  function handleSearchSubmit(evt: FormEvent): void {
     evt.preventDefault();
     dispatch(clearSearchData());
     dispatch(setSearchData({ keyword, category, sortBy, startIndex: 0 }));

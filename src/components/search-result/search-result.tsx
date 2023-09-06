@@ -33,7 +33,7 @@ const SearchResult = () => {
     );
   }
 
-  async function handleLoadMoreClick() {
+  function handleLoadMoreClick(): void {
     const { keyword, category, sortBy, startIndex } = searchData;
     dispatch(setSearchData({ ...searchData, startIndex: startIndex + 30 }));
     dispatch(

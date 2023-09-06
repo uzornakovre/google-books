@@ -26,7 +26,7 @@ const Modal: FC<PropsWithChildren<IModalProps>> = ({
     }
   }
 
-  function handleEscClick(evt: KeyboardEvent) {
+  function handleEscClick(evt: KeyboardEvent): void {
     if (evt.key === "Escape") {
       onClose();
     }
