@@ -2,6 +2,9 @@
   max-width: calc(1280px - 70px * 2);
   padding: 58px 70px 80px;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 
   @media screen and (max-width: 1023px) {
     padding-left: 30px;
@@ -38,9 +41,10 @@
   }
 }
 
-.error {
+.tip {
   display: block;
-  color: #EE3465;
+  margin-bottom: 60px;
+  color: #3456F3;
   text-align: center;
 }
 

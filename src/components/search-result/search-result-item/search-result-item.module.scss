@@ -67,11 +67,8 @@
   }
 }
 
-.image {
-  width: 100%;
+.image_wrapper {
   height: 200px;
-  object-position: center;
-  object-fit: contain;
 
   @media screen and (max-width: 1023px) {
     height: 190px;
@@ -82,10 +79,18 @@
   }
 }
 
+.image {
+  width: 100%;
+  height: inherit;
+  object-position: center;
+  object-fit: contain;
+}
+
 .caption {
   display: flex;
   justify-content: center;
   padding: 17px 0;
+  height: calc(53px - 17px * 2);
 
   @media screen and (max-width: 767px) {
     padding: 13px 0;

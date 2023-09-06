@@ -16,7 +16,9 @@ const SearchResultItem: FC<IBook> = ({
         <h3 className={styles.title}>{title}</h3>
         <p className={styles.category}>{categories && categories[0]}</p>
       </div>
-      <img className={styles.image} src={image} alt={`Cover of ${title}`} />
+      <div className={styles.image_wrapper}>
+        <img className={styles.image} src={image} alt={`Cover of ${title}`} />
+      </div>
       <div className={styles.caption}>
         <p className={styles.authors}>{authors}</p>
       </div>

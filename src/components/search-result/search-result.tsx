@@ -1,12 +1,18 @@
-import { getSearchData, getSearchResult } from "../../services/books/selectors";
+import {
+  getResultIsLoading,
+  getSearchData,
+  getSearchResult,
+} from "../../services/books/selectors";
 import { useAppDispatch, useAppSelector } from "../../services/hooks";
 import styles from "./search-result.module.scss";
 import SearchResultItem from "./search-result-item/search-result-item";
 import { useEffect, useState } from "react";
 import { getBooks, setSearchData } from "../../services/books/books-slice";
+import Preloader from "../preloader/preloader";
 
 const SearchResult = () => {
   const dispatch = useAppDispatch();
+  const isLoading = useAppSelector(getResultIsLoading);
   const searchData = useAppSelector(getSearchData);
   const searchResult = useAppSelector(getSearchResult);
   const [bookList, setBookList] = useState<Array<any>>([]);
@@ -46,6 +52,10 @@ const SearchResult = () => {
 
   return (
     <section className={styles.search_result} aria-label="Search Result">
+      {!searchResult.length && (
+        <p className={styles.tip}>Here will be search result</p>
+      )}
+      {isLoading && <Preloader />}
       <ul className={styles.list}>{bookList}</ul>
       {searchResult.length >= 30 && (
         <button
@@ -53,7 +63,7 @@ const SearchResult = () => {
           type="button"
           onClick={handleLoadMoreClick}
         >
-          Load more
+          {isLoading ? <Preloader /> : "Load more"}
         </button>
       )}
     </section>
